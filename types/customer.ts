@@ -2,10 +2,10 @@ export interface CustomerPayload {
   firstName: string;
   lastName: string;
   email?: string | null;
-  phone?: string;
-  company?: string;
-  address?: string;
-  notes?: string;
+  phone?: string | null;
+  company?: string | null;
+  address?: string | null;
+  notes?: string | null;
 }
 
 export interface CustomerDTO {

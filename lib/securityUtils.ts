@@ -79,14 +79,16 @@ export const RATE_LIMIT_CONFIG = {
  */
 export function validateFileUpload(
   file: File,
-  allowedTypes: Set<string>,
+  allowedTypes: Set<string> | Map<string, string>,
   maxSize: number,
 ): { valid: boolean; error?: string } {
+  const types = allowedTypes instanceof Map ? new Set(allowedTypes.keys()) : allowedTypes;
+
   // Check MIME type
-  if (!allowedTypes.has(file.type)) {
+  if (!types.has(file.type)) {
     return {
       valid: false,
-      error: `File type not allowed. Allowed types: ${Array.from(allowedTypes).join(", ")}`,
+      error: `File type not allowed. Allowed types: ${Array.from(types).join(", ")}`,
     };
   }
 
